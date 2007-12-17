@@ -18,7 +18,6 @@ BuildRequires:	perl-GD >= 1.20
 Obsoletes:	perl-GD-TextUtil
 Provides:	perl-GD-TextUtil
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 This module provides a font-independent way of dealing with text in GD, for use
