@@ -1,31 +1,31 @@
-%define	module	GDTextUtil
-%define name	perl-%{module}
-%define version 0.86
-%define release %mkrel 4
+%define	upstream_name	 GDTextUtil
+%define upstream_version 0.86
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:	Text utilities for use with GD 
-License:	GPL or Artistic
+License:	GPL+ or Artistic
 Group:		Development/Perl
-Source0:	http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/%{module}-%{version}.tar.bz2
-URL:		http://search.cpan.org/dist/%{module}
+URL:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/%{upstream_name}-%{upstream_version}.tar.bz2
+
 %if %{mdkversion} < 1010
 BuildRequires:	perl-devel
 %endif
 BuildRequires:	perl-GD >= 1.20
+BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 Obsoletes:	perl-GD-TextUtil
 Provides:	perl-GD-TextUtil
-BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 This module provides a font-independent way of dealing with text in GD, for use
 with the GD::Text::* modules and GD::Graph.
 
 %prep
-%setup -q -n %{module}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -46,5 +46,3 @@ rm -rf %{buildroot}
 %doc Changes README
 %{perl_vendorlib}/GD
 %{_mandir}/*/*
-
-
